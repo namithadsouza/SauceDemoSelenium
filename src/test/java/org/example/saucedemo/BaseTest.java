@@ -11,7 +11,7 @@ public class BaseTest {
     @Parameters("browser")
     @BeforeMethod(alwaysRun = true)
     public void setUp(@Optional("chrome") String browser) {
-        DriverFactory.initDriver(browser);
+        DriverFactory.initDriver();
     }
 
     @AfterMethod(alwaysRun = true)

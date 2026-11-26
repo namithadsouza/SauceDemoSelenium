@@ -13,10 +13,9 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
-import java.util.List;
 import java.util.Optional;
 
-public class CheckOut {
+public class CheckOutBasic {
     //login
     //cart
     //checkout

@@ -2,9 +2,12 @@ package org.example.saucedemo.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class LoginPage extends BasePage{
     public static final String URL = "https://www.saucedemo.com/";
+    protected final Logger log = LogManager.getLogger(LoginPage.class);
 
     private final By usernameInput = By.id("user-name");
     private final By passwordInput = By.id("password");
@@ -16,18 +19,23 @@ public class LoginPage extends BasePage{
     }
 
     public LoginPage open() {
+        log.info("Opening login page: {}", URL);
         driver.get(URL);
         return this;
     }
 
     public InventoryPage login(String user, String pass) {
+        log.info("Logging in as user '{}'", user);
         type(usernameInput, user);
-        type(passwordInput, pass);
+        typeSecret(passwordInput, pass);   // password is never written to the log
         click(loginButton);
         return new InventoryPage(driver);
     }
 
     public String getErrorMessage() {
-        return getText(errorMessage);
+        String message = getText(errorMessage);
+        log.info("Login error message displayed: '{}'", message);
+        return message;
     }
+
 }

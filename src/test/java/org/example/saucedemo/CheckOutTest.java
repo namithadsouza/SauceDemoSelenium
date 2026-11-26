@@ -1,5 +1,7 @@
 package org.example.saucedemo;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.saucedemo.pages.CartPage;
 import org.example.saucedemo.pages.CheckOutPage;
 import org.example.saucedemo.pages.InventoryPage;
@@ -8,8 +10,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CheckOutTest extends SessionBaseTest{
+    protected final Logger log= LogManager.getLogger(CheckOutTest.class);
     @Test
     public void login() {
+        log.info("Checkout test thread:{} ", Thread.currentThread().getName());
+        log.info("Checkout driver:{}" , getDriver());
         InventoryPage inventory = new LoginPage(getDriver())
                 .open()
                 .login("standard_user", "secret_sauce");
@@ -37,7 +42,7 @@ public class CheckOutTest extends SessionBaseTest{
 
         checkout.finish();
         checkout.waitForUrl(CheckOutPage.COMPLETE_URL);
-        Assert.assertEquals(checkout.getConfirmationMessage(), "Thank you for your order!");
+        Assert.assertEquals(checkout.getConfirmationMessage(), "hank you for your order!");
     }
 
     @Test(dependsOnMethods = "checkOut")

@@ -1,5 +1,6 @@
 package org.example.saucedemo.driver;
 
+import org.example.saucedemo.config.ConfigReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -12,8 +13,9 @@ public class DriverFactory {
     public DriverFactory() {
     }
 
-    public static void initDriver(String browser) {
+    public static void initDriver() {
         WebDriver driver;
+        String browser = ConfigReader.get("browser");
         switch (browser.toLowerCase()) {
             case "firefox":
                 driver = new FirefoxDriver();
