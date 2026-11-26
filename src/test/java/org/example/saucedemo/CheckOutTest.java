@@ -39,10 +39,9 @@ public class CheckOutTest extends SessionBaseTest{
 
         checkout.checkOutPageOne("namitha", "dsouza", "574509");
         checkout.waitForUrl(CheckOutPage.STEP_TWO_URL);
-
         checkout.finish();
         checkout.waitForUrl(CheckOutPage.COMPLETE_URL);
-        Assert.assertEquals(checkout.getConfirmationMessage(), "hank you for your order!");
+        Assert.assertEquals(checkout.getConfirmationMessage(), "Thank you for your order!");
     }
 
     @Test(dependsOnMethods = "checkOut")
